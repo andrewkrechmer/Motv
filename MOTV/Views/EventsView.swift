@@ -5,6 +5,8 @@
 //  Created by Andrew Krechmer on 2021-08-18.
 //
 
+// Unseen invitations, seen invitation (re-targeted), saved invitations
+
 import SwiftUI
 import CoreData
 

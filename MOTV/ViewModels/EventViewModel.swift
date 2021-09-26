@@ -241,27 +241,27 @@ class EventViewModel: ObservableObject, Identifiable {
     }
     
     // -- Determine Secondary Info
-    private func secondaryInfo(for event: Event) -> [(text: String, type: SecondaryInfo)] {
-        
-        // -
-        var info = [(text: String, type: SecondaryInfo)]()
-        
-        // -
-        var locationText = "📍 "
-        
-        if let locationName = event.location.commonName {
-            locationText += locationName
-        }
-        else {
-            locationText += event.location.shortAddress
-        }
-        
-        if let mapTime
-        
-        // -
-        return info
-        
-    }
+//    private func secondaryInfo(for event: Event) -> [(text: String, type: SecondaryInfo)] {
+//
+//        // -
+//        var info = [(text: String, type: SecondaryInfo)]()
+//
+//        // -
+//        var locationText = "📍 "
+//
+//        if let locationName = event.location.commonName {
+//            locationText += locationName
+//        }
+//        else {
+//            locationText += event.location.shortAddress
+//        }
+//
+//        if let mapTime
+//
+//        // -
+//        return info
+//
+//    }
     
     
     
@@ -274,4 +274,5 @@ class EventViewModel: ObservableObject, Identifiable {
         case PlusOnesPolicy
         case Activity
     }
+    
 }

@@ -19,12 +19,16 @@ class UsersRepository: ObservableObject {
     
     // -- Retreive Data
     
-    func retreiveUser(with reference: DocumentReference, completion: @escaping (User) -> Void) { // TODO: - Restructure how Users are tracked. DocumentReference is too expensive, as only 1 document can be retreived per read to Firestore
-            reference.getDocument { document, error in
-                if let document = document {
+    func retreiveUser(withUID uid: String, completion: @escaping (UserSecondModel) -> Void) {
+        
+        db.collection("users").document(uid)
+            .addSnapshotListener { documentSnapshot, error in
+                
+                if let document = documentSnapshot {
                     do {
-                        let newUser = try document.data(as: User.self)! // Forced unwrapped because option was check for with "if let document = document"
-                        completion(newUser)
+                        let retreivedUser = try document.data(as: UserSecondModel.self)! // Forced unwrapped because option was check for with "if let document = document"
+                        completion(retreivedUser)
+                        print(retreivedUser.profileImage)
                     }
                     catch {
                         print(error)
@@ -32,8 +36,35 @@ class UsersRepository: ObservableObject {
                 } else {
                     print("Error: Document doesn't exist")
                 }
+                
             }
+        
+    }
+    
+    func retreiveUser(with reference: DocumentReference, completion: @escaping (User) -> Void) {
+//            reference.getDocument { document, error in
+//                if let document = document {
+//                    do {
+//                        let newUser = try document.data(as: User.self)! // Forced unwrapped because option was check for with "if let document = document"
+//                        completion(newUser)
+//                    }
+//                    catch {
+//                        print(error)
+//                    }
+//                } else {
+//                    print("Error: Document doesn't exist")
+//                }
+//            }
         }
+    
+    
+    // -- Create User
+    
+    func createUser(uid: String, firstName: String, lastName: String, profileImageData: Data) {
+        
+        db.collection("users").document(uid).setData(["firstName": firstName, "lastName": lastName, "profileImage": profileImageData])
+        
+    }
     
     }
     

@@ -5,7 +5,7 @@
 //  Created by Andrew Krechmer on 2021-08-18.
 //
 
-import Foundation
+import SwiftUI
 import MapKit
 
 import FirebaseFirestore
@@ -22,7 +22,7 @@ struct Event: Codable, Identifiable {
     
     var start: TimeInterval
     var end: TimeInterval?
-    var location: Location
+    var location: SavedLocation
     var activities: [String]
     
     var invitees: [DocumentReference]
@@ -33,7 +33,7 @@ struct Event: Codable, Identifiable {
     
     // -- Initializer
     
-    init(draft: Bool, host: DocumentReference, name: String, start: TimeInterval, end: TimeInterval?, location: Location, activities: [String], invitees: [DocumentReference], confirmedAttendees: [DocumentReference], minAttendees: Int, maxAttendees: Int, plusOnesAllowed: Bool) {
+    init(draft: Bool, host: DocumentReference, name: String, start: TimeInterval, end: TimeInterval?, location: SavedLocation, activities: [String], invitees: [DocumentReference], confirmedAttendees: [DocumentReference], minAttendees: Int, maxAttendees: Int, plusOnesAllowed: Bool) {
         
         self.draft = draft
         self.host = host
@@ -50,5 +50,28 @@ struct Event: Codable, Identifiable {
         
     }
         
+}
+
+struct SecondaryInfo: Identifiable {
+    var text: String
+    var type: SecondaryInfoType
+    var id = UUID().uuidString
+}
+
+enum SecondaryInfoType {
+    
+    case location
+    case attendeeLimit
+    case plusOnePolicy
+    case activity
+    
+    func cellColor() -> Color {
+        switch self {
+        case .location:
+            return Color.yellow
+        default:
+            return Color.white
+        }
+    }
 }
 

@@ -30,7 +30,7 @@ class EventViewModel: ObservableObject, Identifiable {
         
         self.attendeesText = "Joanna, Chad, Michael, Kylie, Thor, Guy, Borson, Dorra + 12 more"
         
-        self.secondaryInfo = [(text: "Location", type: .Location)]
+        self.secondaryInfo = [(text: "", type: .location)]
         
         self.timeText = timeText(for: event.start, to: event.end)
         
@@ -143,7 +143,7 @@ class EventViewModel: ObservableObject, Identifiable {
                 date = Date(timeIntervalSince1970: end)
                 timeText += dateFormatter.string(from: date)
             } else {
-                date = Date(timeIntervalSince1970: start)
+                date = Date(timeIntervalSinceNow: start)
                 timeText += dateFormatter.string(from: date)
             }
         }
@@ -247,13 +247,13 @@ class EventViewModel: ObservableObject, Identifiable {
 //        var info = [(text: String, type: SecondaryInfo)]()
 //
 //        // -
-//        var locationText = "📍 "
+//        var Text = "📍 "
 //
-//        if let locationName = event.location.commonName {
-//            locationText += locationName
+//        if let Name = event..commonName {
+//            Text += Name
 //        }
 //        else {
-//            locationText += event.location.shortAddress
+//            Text += event..shortAddress
 //        }
 //
 //        if let mapTime
@@ -269,7 +269,7 @@ class EventViewModel: ObservableObject, Identifiable {
     // MARK: -
     
     enum SecondaryInfo {
-        case Location
+        case location
         case AttendeeLimit
         case PlusOnesPolicy
         case Activity

@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F02118C270BA592004D7589 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02118B270BA592004D7589 /* SignUpViewModel.swift */; };
+		7F02118E270BA59F004D7589 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02118D270BA59F004D7589 /* SignInViewModel.swift */; };
+		7F021190270BF38B004D7589 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02118F270BF38B004D7589 /* AuthenticationServices.swift */; };
+		7F02DADE27011C59007408B3 /* EventCreationLocationFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02DADD27011C59007408B3 /* EventCreationLocationFormViewModel.swift */; };
+		7F02DAE027011C81007408B3 /* EventCreationLocationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02DADF27011C81007408B3 /* EventCreationLocationFormView.swift */; };
 		7F18D66526CDC86E003B8EBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D66426CDC86E003B8EBF /* User.swift */; };
-		7F18D66726CDE466003B8EBF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D66626CDE466003B8EBF /* Location.swift */; };
+		7F18D66726CDE466003B8EBF /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D66626CDE466003B8EBF /* SavedLocation.swift */; };
 		7F18D66926CDEB18003B8EBF /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D66826CDEB18003B8EBF /* EventRepository.swift */; };
 		7F18D66B26CDECE0003B8EBF /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D66A26CDECE0003B8EBF /* EventViewModel.swift */; };
 		7F18D66D26CDECF9003B8EBF /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D66C26CDECF9003B8EBF /* EventsViewModel.swift */; };
@@ -24,6 +29,24 @@
 		7F2C4A7B26CD5A67002187A1 /* MOTVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C4A7A26CD5A67002187A1 /* MOTVUITests.swift */; };
 		7F2C4A9026CDC39E002187A1 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C4A8F26CDC39E002187A1 /* EventCell.swift */; };
 		7F2C4A9226CDC672002187A1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C4A9126CDC672002187A1 /* Event.swift */; };
+		7F3334F7270115B3007CB93B /* EventCreationPrimaryDetailsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3334F6270115B3007CB93B /* EventCreationPrimaryDetailsFormView.swift */; };
+		7F3334F9270115CC007CB93B /* EventCreationPrimaryDetailsFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3334F8270115CC007CB93B /* EventCreationPrimaryDetailsFormViewModel.swift */; };
+		7F3334FB27011611007CB93B /* EventCreationInviteesFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3334FA27011611007CB93B /* EventCreationInviteesFormView.swift */; };
+		7F3334FD2701161D007CB93B /* EventCreationInviteesFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3334FC2701161D007CB93B /* EventCreationInviteesFormViewModel.swift */; };
+		7F3334FF27011636007CB93B /* EventCreationSecondaryDetailsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3334FE27011636007CB93B /* EventCreationSecondaryDetailsFormView.swift */; };
+		7F3335012701164D007CB93B /* EventCreationSecondaryDetailsFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3335002701164D007CB93B /* EventCreationSecondaryDetailsFormViewModel.swift */; };
+		7F333503270116C9007CB93B /* EventCreationFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333502270116C9007CB93B /* EventCreationFormViewModel.swift */; };
+		7F3E6CFE2709252E009EB80A /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E6CFD2709252E009EB80A /* AuthenticationView.swift */; };
+		7F4B9764270153C50072C52F /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B9763270153C50072C52F /* FontManager.swift */; };
+		7F4B9766270153EB0072C52F /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B9765270153EB0072C52F /* ColorManager.swift */; };
+		7F4B9769270155030072C52F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B9768270155030072C52F /* Colors.xcassets */; };
+		7F4B976A270155030072C52F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B9768270155030072C52F /* Colors.xcassets */; };
+		7F4B976B270155030072C52F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B9768270155030072C52F /* Colors.xcassets */; };
+		7F4B976E270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */; };
+		7F4B976F270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */; };
+		7F4B9770270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */; };
+		7F8DC5E1270E65770025E02B /* PersonalProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC5E0270E65770025E02B /* PersonalProfileView.swift */; };
+		7F8DC5E3270E65850025E02B /* PersonalProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC5E2270E65850025E02B /* PersonalProfileViewModel.swift */; };
 		7FBF26DE26D0050A003E2E99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF26DD26D00509003E2E99 /* Constants.swift */; };
 		7FCA797426D563D3008C673A /* MapServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA797326D563D3008C673A /* MapServices.swift */; };
 		A425728F89059B5D04DD7C96 /* Pods_MOTVTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA9B3F5129D3E869CD64A97 /* Pods_MOTVTests.framework */; };
@@ -55,8 +78,13 @@
 		5E9EBD36522029B5DD7CD4FA /* Pods-MOTVTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOTVTests.release.xcconfig"; path = "Target Support Files/Pods-MOTVTests/Pods-MOTVTests.release.xcconfig"; sourceTree = "<group>"; };
 		6AA9B3F5129D3E869CD64A97 /* Pods_MOTVTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOTVTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B6C883BF7A4FA67BB91597 /* Pods-MOTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOTV.release.xcconfig"; path = "Target Support Files/Pods-MOTV/Pods-MOTV.release.xcconfig"; sourceTree = "<group>"; };
+		7F02118B270BA592004D7589 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		7F02118D270BA59F004D7589 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		7F02118F270BF38B004D7589 /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
+		7F02DADD27011C59007408B3 /* EventCreationLocationFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationLocationFormViewModel.swift; sourceTree = "<group>"; };
+		7F02DADF27011C81007408B3 /* EventCreationLocationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationLocationFormView.swift; sourceTree = "<group>"; };
 		7F18D66426CDC86E003B8EBF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		7F18D66626CDE466003B8EBF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		7F18D66626CDE466003B8EBF /* SavedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocation.swift; sourceTree = "<group>"; };
 		7F18D66826CDEB18003B8EBF /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		7F18D66A26CDECE0003B8EBF /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		7F18D66C26CDECF9003B8EBF /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
@@ -78,6 +106,20 @@
 		7F2C4A7C26CD5A67002187A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F2C4A8F26CDC39E002187A1 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		7F2C4A9126CDC672002187A1 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		7F3334F6270115B3007CB93B /* EventCreationPrimaryDetailsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationPrimaryDetailsFormView.swift; sourceTree = "<group>"; };
+		7F3334F8270115CC007CB93B /* EventCreationPrimaryDetailsFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationPrimaryDetailsFormViewModel.swift; sourceTree = "<group>"; };
+		7F3334FA27011611007CB93B /* EventCreationInviteesFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationInviteesFormView.swift; sourceTree = "<group>"; };
+		7F3334FC2701161D007CB93B /* EventCreationInviteesFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventCreationInviteesFormViewModel.swift; path = "MOTV/Views/Event Creation Form/EventCreationInviteesFormViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		7F3334FE27011636007CB93B /* EventCreationSecondaryDetailsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationSecondaryDetailsFormView.swift; sourceTree = "<group>"; };
+		7F3335002701164D007CB93B /* EventCreationSecondaryDetailsFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationSecondaryDetailsFormViewModel.swift; sourceTree = "<group>"; };
+		7F333502270116C9007CB93B /* EventCreationFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationFormViewModel.swift; sourceTree = "<group>"; };
+		7F3E6CFD2709252E009EB80A /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		7F4B9763270153C50072C52F /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		7F4B9765270153EB0072C52F /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		7F4B9768270155030072C52F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Extended-Bold-Italic-Trial copy.otf"; sourceTree = "<group>"; };
+		7F8DC5E0270E65770025E02B /* PersonalProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalProfileView.swift; sourceTree = "<group>"; };
+		7F8DC5E2270E65850025E02B /* PersonalProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonalProfileViewModel.swift; path = MOTV/Views/Profiles/PersonalProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		7FBF26DD26D00509003E2E99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7FCA797326D563D3008C673A /* MapServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapServices.swift; sourceTree = "<group>"; };
 		A1D962A2ADC5ED102297BF10 /* Pods_MOTV_MOTVUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOTV_MOTVUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,7 +187,7 @@
 				7F2C4A8C26CDBA35002187A1 /* Repositories */,
 				7F2C4A8D26CDBB69002187A1 /* Service */,
 				7F2C4A8E26CDBB8C002187A1 /* Utility */,
-				7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */,
+				7F4B9767270154550072C52F /* Assets */,
 				7F2C4A6126CD5A66002187A1 /* Persistence.swift */,
 				7F2C4A6626CD5A66002187A1 /* Info.plist */,
 				7F18D66E26CE92C7003B8EBF /* GoogleService-Info.plist */,
@@ -192,8 +234,9 @@
 		7F2C4A8926CDB9CA002187A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7F2C4A5A26CD5A62002187A1 /* EventsView.swift */,
-				7F2C4A8F26CDC39E002187A1 /* EventCell.swift */,
+				7F8DC5DE270E651A0025E02B /* Profiles */,
+				7F3E6CFC270924CE009EB80A /* Authentication */,
+				7F3334F3270114EF007CB93B /* Event Lists */,
 				7FFDD93326FD4A3E003763D6 /* Event Creation Form */,
 			);
 			path = Views;
@@ -202,8 +245,10 @@
 		7F2C4A8A26CDB9D9002187A1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				7F18D66A26CDECE0003B8EBF /* EventViewModel.swift */,
-				7F18D66C26CDECF9003B8EBF /* EventsViewModel.swift */,
+				7F8DC5DF270E65500025E02B /* Profiles */,
+				7F3E6CFF27092678009EB80A /* Authentication */,
+				7F3334F42701151C007CB93B /* Event Lists */,
+				7F3334F52701153F007CB93B /* Event Creation Form */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -213,7 +258,7 @@
 			children = (
 				7F2C4A9126CDC672002187A1 /* Event.swift */,
 				7F18D66426CDC86E003B8EBF /* User.swift */,
-				7F18D66626CDE466003B8EBF /* Location.swift */,
+				7F18D66626CDE466003B8EBF /* SavedLocation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				7FCA797326D563D3008C673A /* MapServices.swift */,
+				7F02118F270BF38B004D7589 /* AuthenticationServices.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -239,13 +285,100 @@
 			isa = PBXGroup;
 			children = (
 				7FBF26DD26D00509003E2E99 /* Constants.swift */,
+				7F4B9763270153C50072C52F /* FontManager.swift */,
+				7F4B9765270153EB0072C52F /* ColorManager.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		7F3334F3270114EF007CB93B /* Event Lists */ = {
+			isa = PBXGroup;
+			children = (
+				7F2C4A8F26CDC39E002187A1 /* EventCell.swift */,
+				7F2C4A5A26CD5A62002187A1 /* EventsView.swift */,
+			);
+			path = "Event Lists";
+			sourceTree = "<group>";
+		};
+		7F3334F42701151C007CB93B /* Event Lists */ = {
+			isa = PBXGroup;
+			children = (
+				7F18D66A26CDECE0003B8EBF /* EventViewModel.swift */,
+				7F18D66C26CDECF9003B8EBF /* EventsViewModel.swift */,
+			);
+			path = "Event Lists";
+			sourceTree = "<group>";
+		};
+		7F3334F52701153F007CB93B /* Event Creation Form */ = {
+			isa = PBXGroup;
+			children = (
+				7F333502270116C9007CB93B /* EventCreationFormViewModel.swift */,
+				7F3334F8270115CC007CB93B /* EventCreationPrimaryDetailsFormViewModel.swift */,
+				7F02DADD27011C59007408B3 /* EventCreationLocationFormViewModel.swift */,
+				7F3334FC2701161D007CB93B /* EventCreationInviteesFormViewModel.swift */,
+				7F3335002701164D007CB93B /* EventCreationSecondaryDetailsFormViewModel.swift */,
+			);
+			path = "Event Creation Form";
+			sourceTree = "<group>";
+		};
+		7F3E6CFC270924CE009EB80A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				7F3E6CFD2709252E009EB80A /* AuthenticationView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		7F3E6CFF27092678009EB80A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				7F02118B270BA592004D7589 /* SignUpViewModel.swift */,
+				7F02118D270BA59F004D7589 /* SignInViewModel.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		7F4B9767270154550072C52F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */,
+				7F4B9768270155030072C52F /* Colors.xcassets */,
+				7F4B976C270155110072C52F /* Fonts */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		7F4B976C270155110072C52F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7F8DC5DE270E651A0025E02B /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				7F8DC5E0270E65770025E02B /* PersonalProfileView.swift */,
+			);
+			path = Profiles;
+			sourceTree = "<group>";
+		};
+		7F8DC5DF270E65500025E02B /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				7F8DC5E2270E65850025E02B /* PersonalProfileViewModel.swift */,
+			);
+			path = Profiles;
 			sourceTree = "<group>";
 		};
 		7FFDD93326FD4A3E003763D6 /* Event Creation Form */ = {
 			isa = PBXGroup;
 			children = (
+				7F3334F6270115B3007CB93B /* EventCreationPrimaryDetailsFormView.swift */,
+				7F02DADF27011C81007408B3 /* EventCreationLocationFormView.swift */,
+				7F3334FA27011611007CB93B /* EventCreationInviteesFormView.swift */,
+				7F3334FE27011636007CB93B /* EventCreationSecondaryDetailsFormView.swift */,
 			);
 			path = "Event Creation Form";
 			sourceTree = "<group>";
@@ -383,7 +516,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F2C4A6026CD5A66002187A1 /* Preview Assets.xcassets in Resources */,
+				7F4B9769270155030072C52F /* Colors.xcassets in Resources */,
 				7F2C4A5D26CD5A66002187A1 /* Assets.xcassets in Resources */,
+				7F4B976E270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
 				7F18D66F26CE92C8003B8EBF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +527,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F4B976F270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
+				7F4B976A270155030072C52F /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +536,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F4B9770270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
+				7F4B976B270155030072C52F /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,19 +668,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F3334FF27011636007CB93B /* EventCreationSecondaryDetailsFormView.swift in Sources */,
 				7F2C4A6226CD5A66002187A1 /* Persistence.swift in Sources */,
 				7F2C4A5B26CD5A62002187A1 /* EventsView.swift in Sources */,
-				7F18D66726CDE466003B8EBF /* Location.swift in Sources */,
+				7F18D66726CDE466003B8EBF /* SavedLocation.swift in Sources */,
+				7F3E6CFE2709252E009EB80A /* AuthenticationView.swift in Sources */,
+				7F333503270116C9007CB93B /* EventCreationFormViewModel.swift in Sources */,
+				7F3334FD2701161D007CB93B /* EventCreationInviteesFormViewModel.swift in Sources */,
 				7F18D66D26CDECF9003B8EBF /* EventsViewModel.swift in Sources */,
+				7F02118E270BA59F004D7589 /* SignInViewModel.swift in Sources */,
+				7F3334FB27011611007CB93B /* EventCreationInviteesFormView.swift in Sources */,
+				7F3334F7270115B3007CB93B /* EventCreationPrimaryDetailsFormView.swift in Sources */,
+				7F3335012701164D007CB93B /* EventCreationSecondaryDetailsFormViewModel.swift in Sources */,
 				7F18D66B26CDECE0003B8EBF /* EventViewModel.swift in Sources */,
+				7F4B9766270153EB0072C52F /* ColorManager.swift in Sources */,
+				7F02118C270BA592004D7589 /* SignUpViewModel.swift in Sources */,
 				7F2C4A9026CDC39E002187A1 /* EventCell.swift in Sources */,
 				7FCA797426D563D3008C673A /* MapServices.swift in Sources */,
 				7F18D66926CDEB18003B8EBF /* EventRepository.swift in Sources */,
 				7F2C4A5926CD5A62002187A1 /* MOTVApp.swift in Sources */,
+				7F02DADE27011C59007408B3 /* EventCreationLocationFormViewModel.swift in Sources */,
+				7F3334F9270115CC007CB93B /* EventCreationPrimaryDetailsFormViewModel.swift in Sources */,
+				7F8DC5E3270E65850025E02B /* PersonalProfileViewModel.swift in Sources */,
+				7F021190270BF38B004D7589 /* AuthenticationServices.swift in Sources */,
+				7F8DC5E1270E65770025E02B /* PersonalProfileView.swift in Sources */,
 				7F2A569226D1A4ED0016469B /* UsersRepository.swift in Sources */,
 				7F2C4A9226CDC672002187A1 /* Event.swift in Sources */,
 				7F2C4A6526CD5A66002187A1 /* MOTV.xcdatamodeld in Sources */,
+				7F02DAE027011C81007408B3 /* EventCreationLocationFormView.swift in Sources */,
 				7F18D66526CDC86E003B8EBF /* User.swift in Sources */,
+				7F4B9764270153C50072C52F /* FontManager.swift in Sources */,
 				7FBF26DE26D0050A003E2E99 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

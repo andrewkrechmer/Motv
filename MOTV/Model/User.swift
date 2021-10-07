@@ -29,3 +29,14 @@ struct User: Codable {
     // var mutualFriends: [DocumentReference]
     
 }
+
+struct UserSecondModel: Codable {
+ 
+    @DocumentID var id: String?
+    
+    var firstName: String
+    var lastName: String
+    
+    var profileImage: Data
+    
+}

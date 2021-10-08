@@ -63,12 +63,7 @@ struct EventsView: View {
                     } label: {
                         Image(systemName: "person.fill")
                     }
-
-//                    Button {
-//                        testAuth.signedIn = false
-//                    } label: {
-//                        Image(systemName: "person.fill")
-//                    }
+                    .contextMenu { TestUserSwitcher(authServices: testAuth) }
 
                 }
             }

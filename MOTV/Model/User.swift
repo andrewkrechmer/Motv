@@ -34,6 +34,8 @@ struct UserSecondModel: Codable {
  
     @DocumentID var id: String?
     
+    var email: String
+    
     var firstName: String
     var lastName: String
     

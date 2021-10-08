@@ -21,7 +21,6 @@
 		7F2A569226D1A4ED0016469B /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2A569126D1A4ED0016469B /* UsersRepository.swift */; };
 		7F2C4A5926CD5A62002187A1 /* MOTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5826CD5A62002187A1 /* MOTVApp.swift */; };
 		7F2C4A5B26CD5A62002187A1 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5A26CD5A62002187A1 /* EventsView.swift */; };
-		7F2C4A5D26CD5A66002187A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */; };
 		7F2C4A6026CD5A66002187A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5F26CD5A66002187A1 /* Preview Assets.xcassets */; };
 		7F2C4A6226CD5A66002187A1 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C4A6126CD5A66002187A1 /* Persistence.swift */; };
 		7F2C4A6526CD5A66002187A1 /* MOTV.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C4A6326CD5A66002187A1 /* MOTV.xcdatamodeld */; };
@@ -47,8 +46,12 @@
 		7F4B9770270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */; };
 		7F8DC5E1270E65770025E02B /* PersonalProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC5E0270E65770025E02B /* PersonalProfileView.swift */; };
 		7F8DC5E3270E65850025E02B /* PersonalProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC5E2270E65850025E02B /* PersonalProfileViewModel.swift */; };
+		7F8DC5E4270E9A9A0025E02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */; };
+		7F8DC5E5270E9A9A0025E02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */; };
+		7F8DC5E6270E9AF60025E02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */; };
 		7FBF26DE26D0050A003E2E99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF26DD26D00509003E2E99 /* Constants.swift */; };
 		7FCA797426D563D3008C673A /* MapServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA797326D563D3008C673A /* MapServices.swift */; };
+		7FE433772710C65C00B40692 /* TestUserSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE433762710C65C00B40692 /* TestUserSwitcher.swift */; };
 		A425728F89059B5D04DD7C96 /* Pods_MOTVTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA9B3F5129D3E869CD64A97 /* Pods_MOTVTests.framework */; };
 		B62CFC743734A709A7D2333C /* Pods_MOTV_MOTVUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D962A2ADC5ED102297BF10 /* Pods_MOTV_MOTVUITests.framework */; };
 		F0B61C401530E6FE0262FEE6 /* Pods_MOTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D368C2829FCB1CE6A39EF73 /* Pods_MOTV.framework */; };
@@ -122,6 +125,7 @@
 		7F8DC5E2270E65850025E02B /* PersonalProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonalProfileViewModel.swift; path = MOTV/Views/Profiles/PersonalProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		7FBF26DD26D00509003E2E99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7FCA797326D563D3008C673A /* MapServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapServices.swift; sourceTree = "<group>"; };
+		7FE433762710C65C00B40692 /* TestUserSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserSwitcher.swift; sourceTree = "<group>"; };
 		A1D962A2ADC5ED102297BF10 /* Pods_MOTV_MOTVUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOTV_MOTVUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79ABE9E6B3CDB7C3830B6A1 /* Pods-MOTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOTV.debug.xcconfig"; path = "Target Support Files/Pods-MOTV/Pods-MOTV.debug.xcconfig"; sourceTree = "<group>"; };
 		C3464EA8E924783B57DAA7E9 /* Pods-MOTV-MOTVUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOTV-MOTVUITests.release.xcconfig"; path = "Target Support Files/Pods-MOTV-MOTVUITests/Pods-MOTV-MOTVUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -325,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				7F3E6CFD2709252E009EB80A /* AuthenticationView.swift */,
+				7FE433762710C65C00B40692 /* TestUserSwitcher.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -517,9 +522,9 @@
 			files = (
 				7F2C4A6026CD5A66002187A1 /* Preview Assets.xcassets in Resources */,
 				7F4B9769270155030072C52F /* Colors.xcassets in Resources */,
-				7F2C4A5D26CD5A66002187A1 /* Assets.xcassets in Resources */,
 				7F4B976E270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
 				7F18D66F26CE92C8003B8EBF /* GoogleService-Info.plist in Resources */,
+				7F8DC5E6270E9AF60025E02B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F4B976F270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
+				7F8DC5E4270E9A9A0025E02B /* Assets.xcassets in Resources */,
 				7F4B976A270155030072C52F /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F4B9770270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
+				7F8DC5E5270E9A9A0025E02B /* Assets.xcassets in Resources */,
 				7F4B976B270155030072C52F /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,6 +700,7 @@
 				7F021190270BF38B004D7589 /* AuthenticationServices.swift in Sources */,
 				7F8DC5E1270E65770025E02B /* PersonalProfileView.swift in Sources */,
 				7F2A569226D1A4ED0016469B /* UsersRepository.swift in Sources */,
+				7FE433772710C65C00B40692 /* TestUserSwitcher.swift in Sources */,
 				7F2C4A9226CDC672002187A1 /* Event.swift in Sources */,
 				7F2C4A6526CD5A66002187A1 /* MOTV.xcdatamodeld in Sources */,
 				7F02DAE027011C81007408B3 /* EventCreationLocationFormView.swift in Sources */,
@@ -856,6 +864,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MOTV/Preview Content\"";
 				DEVELOPMENT_TEAM = 5A5DD6ZMS8;
@@ -879,6 +888,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MOTV/Preview Content\"";
 				DEVELOPMENT_TEAM = 5A5DD6ZMS8;

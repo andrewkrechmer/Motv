@@ -14,7 +14,7 @@ class EventCreationInviteesFormViewModel: EventCreationFormViewModel {
     
     @Published var formIsValid: Bool = false
     
-    @Published var friends: [UserViewModel] =  TestAssistant.directFriends
+  //  @Published var friends: [UserViewModel]
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -84,21 +84,3 @@ class UserViewModel: ObservableObject, Identifiable {
 
 
 
-// MARK: - Test Data
-
-struct TestAssistant {
-    
-    static let directFriends: [UserViewModel] = [
-        UserViewModel(firstName: "Greg", lastName: "Sway", profileImage: UIImage(imageLiteralResourceName: "Man Profile #1"), highlight: false),
-        UserViewModel(firstName: "Dufas", lastName: "Dakota", profileImage: UIImage(imageLiteralResourceName: "Woman Profile #1"), highlight: false),
-        UserViewModel(firstName: "Bob", lastName: "Dwindle", profileImage: UIImage(imageLiteralResourceName: "Man Profile #2"), highlight: false),
-        UserViewModel(firstName: "Lorax", lastName: "Orlanda", profileImage: UIImage(imageLiteralResourceName: "Woman Profile #2"), highlight: false),
-        UserViewModel(firstName: "Holister", lastName: "Tamn", profileImage: UIImage(imageLiteralResourceName: "Man Profile #3"), highlight: false),
-        UserViewModel(firstName: "Alpham", lastName: "Popari", profileImage: UIImage(imageLiteralResourceName: "Woman Profile #3"), highlight: false),
-        UserViewModel(firstName: "Taki", lastName: "Atalono", profileImage: UIImage(imageLiteralResourceName: "Man Profile #4"), highlight: false),
-        UserViewModel(firstName: "Yuf", lastName: "Bruf", profileImage: UIImage(imageLiteralResourceName: "Woman Profile #4"), highlight: false),
-        UserViewModel(firstName: "Rori", lastName: "Bambardo", profileImage: UIImage(imageLiteralResourceName: "Man Profile #5"), highlight: false),
-        UserViewModel(firstName: "Gambles", lastName: "Quon", profileImage: UIImage(imageLiteralResourceName: "Woman Profile #5"), highlight: false),
-    ]
-    
-}

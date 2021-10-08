@@ -22,18 +22,18 @@ struct MOTVApp: App {
     var body: some Scene {
         WindowGroup {
             
-//            if authenticationServices.signedIn {
-//
-//                EventsView(eventsViewModel: eventsViewModel)
-//                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
-//                    .environmentObject(authenticationServices)
-//
-//            }
-//            else {
+            if authenticationServices.signedIn {
+
+                EventsView(eventsViewModel: eventsViewModel)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environmentObject(authenticationServices)
+
+            }
+            else {
                 
                 SignUpView(viewModel: SignUpViewModel(authenticationServices: authenticationServices))
                 
-//            }
+            }
             
         }
         

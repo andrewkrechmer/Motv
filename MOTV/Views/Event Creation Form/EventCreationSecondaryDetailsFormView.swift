@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventCreationSecondaryDetailsForm: View {
     
-    @ObservedObject var viewModel: EventCreationSecondaryDetailsFormViewModel = EventCreationSecondaryDetailsFormViewModel()
+    @ObservedObject var viewModel: EventCreationSecondaryDetailsFormViewModel
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -42,7 +42,7 @@ struct EventCreationSecondaryDetailsForm: View {
                     })
                     
                     Button(action: {
-                        viewModel.postEvent()
+                        viewModel.eventCreationFormViewModel.postEvent()
                         presentEventCreationForm = false
                     }, label: {
                         EventCreationFormNavigationButtonView(active: $backButtonActive, text: "Post")
@@ -57,7 +57,7 @@ struct EventCreationSecondaryDetailsForm: View {
                         searchFieldIsSelected = editing
                     } onCommit: {
                         let newActivity = SecondaryInfo(text: newActivityString, type: .activity)
-                        viewModel.activities.append(newActivity)
+                        viewModel.eventCreationFormViewModel.activities.append(newActivity.text)
                         newActivityString = "";
                     }
                     .font(.system(size: 16, weight: .medium, design: .default))
@@ -71,7 +71,7 @@ struct EventCreationSecondaryDetailsForm: View {
                                 
                                 hideKeyboard()
                                 let newActivity = SecondaryInfo(text: newActivityString, type: .activity)
-                                viewModel.activities.append(newActivity)
+                                viewModel.eventCreationFormViewModel.activities.append(newActivity.text)
                                 newActivityString = ""
                                 
                             }, label: {
@@ -87,8 +87,8 @@ struct EventCreationSecondaryDetailsForm: View {
                 
                 VStack(alignment: .center, spacing: 10) {
                     
-                    ForEach(viewModel.activities) { activity in
-                        SecondaryInfoCell(info: activity)
+                    ForEach(viewModel.eventCreationFormViewModel.activities, id: \.self) { activity in // MARK fix foreach id
+                        SecondaryInfoCell(info: SecondaryInfo(text: activity, type: .activity))
                     }
                     
                 }

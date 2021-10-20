@@ -13,7 +13,7 @@ class EventViewModel: ObservableObject, Identifiable {
     var specialColour = Color("Red") // Should be universal
     
     //    @Published var eventRepository = EventRepository()
-    @Published var userRepository = UsersRepository()
+    @Published var userRepository: UsersRepository
     //    private var cancellables = Set<AnyCancellable>()
     
     @Published var hostImage: UIImage = UIImage(systemName: "person")!
@@ -24,9 +24,11 @@ class EventViewModel: ObservableObject, Identifiable {
     @Published var secondaryInfo: [(text: String, type: SecondaryInfo)]
     
     
-    init(event: Event) {
+    init(usersRepository: UsersRepository, event: Event) {
         
-        self.nameText = event.name
+        self.userRepository = usersRepository
+        
+        self.nameText = event.eventName
         
         self.attendeesText = "Joanna, Chad, Michael, Kylie, Thor, Guy, Borson, Dorra + 12 more"
         
@@ -34,13 +36,9 @@ class EventViewModel: ObservableObject, Identifiable {
         
         self.timeText = timeText(for: event.start, to: event.end)
         
-        userRepository.retreiveUser(with: event.host) { user in
-            self.fetchImage(with: user.profileImageURL) {
-                self.hostImage = $0
-            }
-        }
+      //  self.hostImage = UIImage(data: event.hostProfileImage) ?? UIImage(systemName: "person")
         
-        determineAttendeeImages(for: event)
+        self.determineAttendeeImages(for: event)
         
     }
     
@@ -163,80 +161,39 @@ class EventViewModel: ObservableObject, Identifiable {
     // -- Determine Attendees Images
     private func determineAttendeeImages(for event: Event) {
         
-        var count = 0
+        //var count = 0
         
-        switch event.confirmedAttendees.count {
-        
-        case 0:
-            break
-            
-        case 1:
-            userRepository.retreiveUser(with: event.confirmedAttendees[0]) { user in
-                self.fetchImage(with: user.profileImageURL) {
-                    self.attendeesImages[0] = $0
-                }
-                count += 1
-            }
-            
-        case 2:
-            for i in 0...1 {
-                userRepository.retreiveUser(with: event.confirmedAttendees[i]) { user in
-                    self.fetchImage(with: user.profileImageURL) {
-                        self.attendeesImages[i] = $0
-                    }
-                }
-                count += 2
-            }
-            
-        default:
-            for i in 0...2 {
-                userRepository.retreiveUser(with: event.confirmedAttendees[i]) { user in
-                    self.fetchImage(with: user.profileImageURL) {
-                        self.attendeesImages[i] = $0
-                    }
-                }
-            }
-            count += 3
-            
-        }
-        
-        switch event.invitees.count {
-        
-        case 0:
-            break
-            
-        case 1:
-            if count == 3 { break }
-            userRepository.retreiveUser(with: event.invitees[0]) { user in
-                self.fetchImage(with: user.profileImageURL) {
-                    self.attendeesImages[0] = $0
-                }
-            }
-            count += 1
-            
-        case 2:
-            for i in 0...1 {
-                if count == 3 { break }
-                userRepository.retreiveUser(with: event.invitees[i]) { user in
-                    self.fetchImage(with: user.profileImageURL) {
-                        self.attendeesImages[i] = $0
-                    }
-                }
-            }
-            count += 2
-            
-        default:
-            for i in 0...2 {
-                if count == 3 { break }
-                userRepository.retreiveUser(with: event.invitees[i]) { user in
-                    self.fetchImage(with: user.profileImageURL) {
-                        self.attendeesImages[i] = $0
-                    }
-                }
-            }
-            count += 3
-        
-        }
+//        switch event.inviteesProfileImages.count {
+//            
+//        case 0:
+//            break
+//            
+//        case 1:
+//            let image = UIImage(data: event.inviteesProfileImages[0])
+//            if let image = image {
+//                self.attendeesImages[0] = image
+//            }
+//            count += 1
+//            
+//        case 2:
+//            for i in 0...1 {
+//                let image = UIImage(data: event.inviteesProfileImages[i])
+//                if let image = image {
+//                    self.attendeesImages[i] = image
+//                }
+//            }
+//            count += 2
+//            
+//        default:
+//            for i in 0...2 {
+//                let image = UIImage(data: event.inviteesProfileImages[i])
+//                if let image = image {
+//                    self.attendeesImages[i] = image
+//                }
+//            }
+//            count += 3
+//            
+//        }
         
     }
     

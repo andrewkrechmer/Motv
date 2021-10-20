@@ -10,17 +10,51 @@ import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class EventCreationInviteesFormViewModel: EventCreationFormViewModel {
+class EventCreationInviteesFormViewModel: ObservableObject {
+    
+    @Published var eventCreationFormViewModel: EventCreationFormViewModel
+    
+    @Published var usersRepository: UsersRepository
     
     @Published var formIsValid: Bool = false
     
-  //  @Published var friends: [UserViewModel]
+    @Published var friendViewModels = [UserViewModel]()
+    
+    var numFriendViewModelsDisplayed = 0 {
+        didSet {
+            // If less than 10 friend view models left get more from repository
+            if friendViewModels.count - numFriendViewModelsDisplayed < 10 {
+                retreiveFriends()
+            }
+        }
+    }
     
     private var cancellables = Set<AnyCancellable>()
     
-    override init() {
+    init(eventCreationForm: EventCreationFormViewModel, eventRepository: EventRepository, usersRepository: UsersRepository) {
         
-        super.init()
+        self.eventCreationFormViewModel = eventCreationForm
+        
+        self.usersRepository = usersRepository
+        
+        // Subscribe to the repositories friends array
+        
+        usersRepository.$friends.map { friends in
+            
+            friends.map { friend in
+                UserViewModel(id: friend.id ?? "", firstName: friend.firstName, lastName: friend.lastName, profileImage: friend.profileImage)
+            }
+        }
+        .assign(to: \.friendViewModels, on: self)
+        .store(in: &cancellables)
+        
+        
+        // Retreive first batch of friends
+        
+        retreiveFriends()
+        
+        
+        //
         
         eventInviteesFormIsValid
             .receive(on: RunLoop.main)
@@ -28,8 +62,14 @@ class EventCreationInviteesFormViewModel: EventCreationFormViewModel {
             .store(in: &cancellables)
     }
     
+    func retreiveFriends() {
+        
+        usersRepository.retreiveFriends(batchSize: 20)
+        
+    }
+    
     private var inviteesAreValid: AnyPublisher<Bool, Never> {
-        $invitees
+        eventCreationFormViewModel.$invitees
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.count >= 1 }
@@ -37,7 +77,7 @@ class EventCreationInviteesFormViewModel: EventCreationFormViewModel {
     }
     
     private var minimumAttendeesIsValid: AnyPublisher<Bool, Never> {
-        $minimumAttendees
+        eventCreationFormViewModel.$minimumAttendees
             //.debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0 > 0 }
@@ -45,7 +85,7 @@ class EventCreationInviteesFormViewModel: EventCreationFormViewModel {
     }
     
     private var maximumAttendeesIsValid: AnyPublisher<Bool, Never> {
-        $maximumAttendees
+        eventCreationFormViewModel.$maximumAttendees
             //.debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0 > 0 && $0 < 599 }
@@ -64,20 +104,24 @@ class EventCreationInviteesFormViewModel: EventCreationFormViewModel {
     
 }
 class UserViewModel: ObservableObject, Identifiable {
-    var id: DocumentReference
+    var id: String
     var firstName: String
     var lastName: String
     var profileImage: UIImage
-    @Published var highlight: Bool
     
-    init(firstName: String, lastName: String, profileImage: UIImage, highlight: Bool) {
+    var highlight: Bool
+    
+    init(id: String, firstName: String, lastName: String, profileImage: Data) {
+        
+        self.id = id
+        
         self.firstName = firstName
         self.lastName = lastName
-        self.profileImage = profileImage
-        self.highlight = highlight
         
-        let eventRepository = EventRepository()
-        self.id = eventRepository.db.collection("users").document(firstName)
+        self.profileImage = UIImage(data: profileImage) ?? UIImage(systemName: "Person")!
+        
+        self.highlight = false
+        
     }
     
 }

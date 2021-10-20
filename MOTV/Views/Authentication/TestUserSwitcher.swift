@@ -10,7 +10,7 @@ import SwiftUI
 struct TestUserSwitcher: View {
     
     @ObservedObject var authServices: AuthenticationServices
-    @ObservedObject var repo: UsersRepository = UsersRepository()
+    @ObservedObject var repo: UsersRepository
     
     @State var users = [UserSecondModel]()
     
@@ -41,7 +41,7 @@ struct TestUserSwitcher: View {
                     }
             }
         
-        ForEach(users, id: \.firstName) { user in
+        ForEach(users, id: \.id) { user in
 
             UserButton(name: "\(user.firstName) \(user.lastName)", profileImageData: user.profileImage) {
                 

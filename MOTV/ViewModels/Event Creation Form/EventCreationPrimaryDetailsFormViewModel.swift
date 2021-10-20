@@ -10,15 +10,17 @@ import Foundation
 import SwiftUI
 import Combine
 
-class EventCreationPrimaryDetailsFormViewModel: EventCreationFormViewModel {
+class EventCreationPrimaryDetailsFormViewModel: ObservableObject {
+    
+    @Published var eventCreationFormViewModel: EventCreationFormViewModel
     
     @Published var formIsValid: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
     
-    override init() {
+    init(eventCreationForm: EventCreationFormViewModel) {
         
-        super.init()
+        self.eventCreationFormViewModel = eventCreationForm
         
         eventDetailsAreValidPublisher
             .receive(on: RunLoop.main)
@@ -27,7 +29,7 @@ class EventCreationPrimaryDetailsFormViewModel: EventCreationFormViewModel {
     }
     
     private var eventNameIsValid: AnyPublisher<Bool, Never> {
-        $eventName
+        eventCreationFormViewModel.$eventName
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.count > 1 }
@@ -35,7 +37,7 @@ class EventCreationPrimaryDetailsFormViewModel: EventCreationFormViewModel {
     }
     
     private var startDateIsValid: AnyPublisher<Bool, Never> {
-        $startDate
+        eventCreationFormViewModel.$startDate
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0 >= Date() - 1 }
@@ -43,15 +45,15 @@ class EventCreationPrimaryDetailsFormViewModel: EventCreationFormViewModel {
     }
     
     private var endDateIsValid: AnyPublisher<Bool, Never> {
-        $endDate
+        eventCreationFormViewModel.$endDate
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
-            .map { $0 > self.startDate + 1}
+            .map { $0 > self.eventCreationFormViewModel.startDate + 1}
             .eraseToAnyPublisher()
     }
     
     private var locationIsValid: AnyPublisher<Bool, Never> {
-        $location
+        eventCreationFormViewModel.$location
             .removeDuplicates()
             .map { $0 != SavedLocation(commonName: "", addressString: "", latitude: 0, longitude: 0) }
             .eraseToAnyPublisher()

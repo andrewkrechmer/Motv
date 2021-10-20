@@ -21,16 +21,17 @@ class EventRepository: ObservableObject {
     // -- Initializer
     
     init() {
-        
         retreiveEvents()
-        
     }
     
     
     // -- Retreive Data
     
     func retreiveEvents() {
-        db.collection("events")
+        
+       let currentUserId: String = Auth.auth().currentUser?.uid ?? ""
+        
+        db.collection("users").document(currentUserId).collection("events")
             .addSnapshotListener { querySnapshot, error in
                 
                 if let querySnapshot = querySnapshot {
@@ -55,10 +56,18 @@ class EventRepository: ObservableObject {
     
     // -- Store Data
     
-    func addNewEvent(_ event: Event) {
+    func addNewEvent(_ event: inout Event) {
+        
+        let currentUserId: String = Auth.auth().currentUser?.uid ?? ""
+        
+        event.host = currentUserId
+        
+        event.invitees = event.invitees.map { invitee in
+            return EventInvitee(id: invitee.id, profileImage: "", invitedBy: currentUserId, status: .invited)
+        }
         
         do {
-            let _ = try db.collection("events").addDocument(from: event)
+            let _ = try db.collection("users").document(currentUserId).collection("events").addDocument(from: event)
         }
         catch {
             fatalError("Unable to encode event: \(error.localizedDescription)")

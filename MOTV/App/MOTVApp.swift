@@ -14,9 +14,10 @@ struct MOTVApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @StateObject var eventsViewModel = EventsViewModel()
     @StateObject var authenticationServices = AuthenticationServices()
     
+    @StateObject var eventsViewModel = EventsViewModel(eventRepository: EventRepository())
+        
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {

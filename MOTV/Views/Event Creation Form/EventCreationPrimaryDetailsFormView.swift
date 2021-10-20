@@ -41,7 +41,7 @@ struct EventCreationPrimaryDetailsFormView: View {
                 HStack() {
                     Spacer()
                     NavigationLink(
-                        destination: EventCreationInviteesFormView(presentEventCreationForm: $presentEventCreationForm),
+                        destination: EventCreationInviteesFormView(viewModel: EventCreationInviteesFormViewModel(eventCreationForm: viewModel.eventCreationFormViewModel, eventRepository: EventRepository(), usersRepository: UsersRepository()), presentEventCreationForm: $presentEventCreationForm),
                         label: {
                             EventCreationFormNavigationButtonView(active: $viewModel.formIsValid, text: "Friends")
                         })
@@ -52,20 +52,20 @@ struct EventCreationPrimaryDetailsFormView: View {
                 
                 // ---- Event name text field
                 
-                TextField("Event Name", text: $viewModel.eventName) { editing in
+                TextField("Event Name", text: $viewModel.eventCreationFormViewModel.eventName) { editing in
                     eventNameFieldIsSelected = editing
                 } onCommit: {
                    
                 }
                 .font(.system(size: 16, weight: .medium, design: .default))
                 .fieldModifier($eventNameFieldIsSelected)
-                .onChange(of: viewModel.eventName) { value in }
+                .onChange(of: viewModel.eventCreationFormViewModel.eventName) { value in }
                 .padding(.bottom, 6)
                 
                 
                 // ---- Start date and time fields
                 
-                DatePicker("Starts", selection: $viewModel.startDate, in: Date()...Date(timeIntervalSinceNow: 31536000), displayedComponents: [ .hourAndMinute, .date])
+                DatePicker("Starts", selection: $viewModel.eventCreationFormViewModel.startDate, in: Date()...Date(timeIntervalSinceNow: 31536000), displayedComponents: [ .hourAndMinute, .date])
                     .datePickerStyle(DefaultDatePickerStyle())
                     .padding(.horizontal, 12)
                     
@@ -74,7 +74,7 @@ struct EventCreationPrimaryDetailsFormView: View {
                 
                 
                 if includeEndDate {
-                    DatePicker("Ends", selection: $viewModel.endDate, in: Date()...Date(timeIntervalSinceNow: 31536000), displayedComponents: [ .hourAndMinute, .date])
+                    DatePicker("Ends", selection: $viewModel.eventCreationFormViewModel.endDate, in: Date()...Date(timeIntervalSinceNow: 31536000), displayedComponents: [ .hourAndMinute, .date])
                         .datePickerStyle(DefaultDatePickerStyle())
                         .padding(.horizontal, 12)
                 }
@@ -103,7 +103,7 @@ struct EventCreationPrimaryDetailsFormView: View {
                 } label: {
                     ZStack {
                         
-                        Text(viewModel.location.commonName)
+                        Text(viewModel.eventCreationFormViewModel.location.commonName)
                             .font(.system(size: 16, weight: .medium, design: .default))
                             .foregroundColor(locationFieldIsActive ? .primary : Color(UIColor.systemGray3))
                             .fieldModifier($locationFieldIsSelected)
@@ -130,7 +130,7 @@ struct EventCreationPrimaryDetailsFormView: View {
             hideKeyboard()
         }
         .sheet(isPresented: $locationFieldIsSelected) {
-            EventCreationLocationFormView(mapModel: EventCreationLocationFormViewModel(), savedLocations: TestData.testSavedLocations, locationSelection: $viewModel.location)
+            EventCreationLocationFormView(mapModel: EventCreationLocationFormViewModel(), savedLocations: TestData.testSavedLocations, locationSelection: $viewModel.eventCreationFormViewModel.location)
         }
         
     }

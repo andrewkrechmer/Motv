@@ -11,7 +11,7 @@ import SwiftUI
 
 class PersonalProfileViewModel: ObservableObject {
     
-    @Published var userRepository: UsersRepository
+    @Published var usersRepository: UsersRepository
     
     @Published var profileImage: UIImage
     
@@ -19,21 +19,21 @@ class PersonalProfileViewModel: ObservableObject {
     
     @Published var lastName: String
     
-    init(uid: String) {
+    init(usersRepository: UsersRepository) {
         
         self.profileImage = UIImage(systemName: "person")!
         self.firstName = ""
         self.lastName = ""
         
-        self.userRepository = UsersRepository()
+        self.usersRepository = usersRepository
         
-        self.retreiveUser(withUID: uid)
+        self.retreiveCurrentUser()
         
     }
     
-    func retreiveUser(withUID uid: String) {
+    func retreiveCurrentUser() {
         
-        userRepository.retreiveUser(withUID: uid) { user in
+        usersRepository.retreiveUser() { user in
             
             self.firstName = user.firstName
             

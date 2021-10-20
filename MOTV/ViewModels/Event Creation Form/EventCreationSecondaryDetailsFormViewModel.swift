@@ -7,14 +7,14 @@
 
 import Foundation
 
-class EventCreationSecondaryDetailsFormViewModel: EventCreationFormViewModel {
+class EventCreationSecondaryDetailsFormViewModel: ObservableObject {
+    
+    @Published var eventCreationFormViewModel: EventCreationFormViewModel
     
     @Published var formIsValid: Bool = false
     
-    override init() {
-        
-        super.init()
-        
+    init(eventCreationForm: EventCreationFormViewModel) {
+        self.eventCreationFormViewModel = eventCreationForm
     }
     
 }

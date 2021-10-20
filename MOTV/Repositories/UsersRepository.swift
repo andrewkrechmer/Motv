@@ -15,13 +15,56 @@ class UsersRepository: ObservableObject {
     let db = Firestore.firestore()
     
     @Published var users = [User]()
-
     
-    // -- Retreive Data
+    @Published var friends = [UserSnapShot]()
     
-    func retreiveUser(withUID uid: String, completion: @escaping (UserSecondModel) -> Void) {
+   private var lastRetreivedDocument: DocumentSnapshot?
+    
+    // -- Retreive Friends
+    
+    func retreiveFriends(batchSize: Int) {
         
-        db.collection("users").document(uid)
+        //let currentUserId: String = Auth.auth().currentUser?.uid ?? ""
+        
+        let friendsQuery = db.collection("users")/*.document(currentUserId).collection("friends")*/
+            .limit(to: batchSize)
+        
+        if let lastRetreivedDocument = lastRetreivedDocument {
+            friendsQuery
+                .start(afterDocument: lastRetreivedDocument)
+        }
+        
+        friendsQuery
+            .getDocuments { querysnapshot, error in
+                
+                if let snapshot = querysnapshot {
+                    
+                    self.lastRetreivedDocument = snapshot.documents.last
+                    
+                    self.friends = snapshot.documents.compactMap { document in
+                        
+                        do {
+                            let friend = try document.data(as: UserSnapShot.self)
+                            return friend
+                        }
+                        catch {
+                            print("error retreving friends: \(error)")
+                            return nil
+                        }
+                        
+                    }
+                    
+                }
+            }
+    }
+    
+    // -- Retreive User
+    
+    func retreiveUser(completion: @escaping (UserSecondModel) -> Void) {
+        
+        let currentUserId: String = Auth.auth().currentUser?.uid ?? ""
+        
+        db.collection("users").document(currentUserId)
             .addSnapshotListener { documentSnapshot, error in
                 
                 if let document = documentSnapshot {

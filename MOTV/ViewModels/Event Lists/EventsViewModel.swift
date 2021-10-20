@@ -10,16 +10,19 @@ import Combine
 
 class EventsViewModel: ObservableObject {
     
-    @Published var eventRepository = EventRepository()
+    @Published var eventRepository: EventRepository
     
     @Published var eventViewModels = [EventViewModel]()
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(eventRepository: EventRepository) {
+        
+        self.eventRepository = eventRepository
+        
         eventRepository.$events.map { events in
             events.map { event in
-                EventViewModel(event: event)
+                EventViewModel(usersRepository: UsersRepository(), event: event)
             }
         }
         .assign(to: \.eventViewModels, on: self)

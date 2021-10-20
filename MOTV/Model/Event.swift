@@ -15,42 +15,60 @@ struct Event: Codable, Identifiable {
     
     @DocumentID var id: String? /*= UUID().uuidString*/
     
-    var draft: Bool
+    var host: String
     
-    var host: DocumentReference
-    var name: String
+    var hostProfileImage: String
+    
+    var hostsRelationToEvent: UsersRelationToEvent
+    
+    var eventName: String
     
     var start: TimeInterval
+    
     var end: TimeInterval?
+    
     var location: SavedLocation
+    
     var activities: [String]
     
-    var invitees: [DocumentReference]
-    var confirmedAttendees: [DocumentReference]
+    var invitees: [EventInvitee]
+    
     var minAttendees: Int
+    
     var maxAttendees: Int
+    
     var plusOnesAllowed: Bool
-    
-    // -- Initializer
-    
-    init(draft: Bool, host: DocumentReference, name: String, start: TimeInterval, end: TimeInterval?, location: SavedLocation, activities: [String], invitees: [DocumentReference], confirmedAttendees: [DocumentReference], minAttendees: Int, maxAttendees: Int, plusOnesAllowed: Bool) {
-        
-        self.draft = draft
-        self.host = host
-        self.name = name
-        self.start = start
-        self.end = end
-        self.location = location
-        self.activities = activities
-        self.invitees = invitees
-        self.confirmedAttendees = confirmedAttendees
-        self.minAttendees = minAttendees
-        self.maxAttendees = maxAttendees
-        self.plusOnesAllowed = plusOnesAllowed
-        
-    }
         
 }
+
+struct EventInvitee: Codable, Identifiable {
+    var id: String
+    var profileImage: String
+    var invitedBy: String
+    var status: UsersRelationToEvent
+}
+
+enum UsersRelationToEvent: String, Codable {
+    
+    case drafted
+    case posted
+    
+    case invited
+    case saved
+    case accepted
+    case declined
+    
+    case hosted
+    case attended
+    case missed
+    
+}
+
+
+
+
+
+// Belongs Elsewhere
 
 struct SecondaryInfo: Identifiable {
     var text: String
@@ -59,12 +77,12 @@ struct SecondaryInfo: Identifiable {
 }
 
 enum SecondaryInfoType {
-    
+
     case location
     case attendeeLimit
     case plusOnePolicy
     case activity
-    
+
     func cellColor() -> Color {
         switch self {
         case .location:
@@ -74,4 +92,5 @@ enum SecondaryInfoType {
         }
     }
 }
+
 

@@ -55,15 +55,15 @@ struct EventsView: View {
                 
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
 
                     NavigationLink {
                         PersonalProfileView()
-                            .environmentObject(PersonalProfileViewModel(uid: (testAuth.auth?.currentUser!.uid)!))
+                            .environmentObject(PersonalProfileViewModel(usersRepository: UsersRepository()))
                     } label: {
                         Image(systemName: "person.fill")
                     }
-                    .contextMenu { TestUserSwitcher(authServices: testAuth) }
+                    .contextMenu { TestUserSwitcher(authServices: self.testAuth, repo: UsersRepository()) }
 
                 }
             }
@@ -71,7 +71,8 @@ struct EventsView: View {
         }
         .sheet(isPresented: $presentEventCreationForm, content: {
             EventCreationPrimaryDetailsFormView(presentEventCreationForm: $presentEventCreationForm)
-                .environmentObject(EventCreationPrimaryDetailsFormViewModel())
+                .environmentObject(EventCreationPrimaryDetailsFormViewModel(eventCreationForm: EventCreationFormViewModel(eventRepository: EventRepository())))
+                
         })
 
 
@@ -123,11 +124,11 @@ struct CreateEventButton: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventsView(eventsViewModel: EventsViewModel())
-            .preferredColorScheme(.dark)
-            .previewDevice("iPhone 11")
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventsView(eventsViewModel: EventsViewModel())
+//            .preferredColorScheme(.dark)
+//            .previewDevice("iPhone 11")
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}

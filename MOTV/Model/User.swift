@@ -25,8 +25,19 @@ struct User: Codable {
     
     var phoneNumber: Int
     
-    var directFriends: [DocumentReference]
+    var directFriends: [String]
     // var mutualFriends: [DocumentReference]
+    
+}
+
+struct UserSnapShot: Codable {
+    
+    @DocumentID var id: String? /*= UUID().uuidString*/
+    
+    var firstName: String
+    var lastName: String
+    
+    var profileImage: Data
     
 }
 

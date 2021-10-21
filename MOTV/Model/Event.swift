@@ -19,7 +19,7 @@ struct Event: Codable, Identifiable {
     
     var hostProfileImage: String
     
-    var hostsRelationToEvent: UsersRelationToEvent
+    var usersRelationToEvent: UsersRelationToEvent
     
     var eventName: String
     

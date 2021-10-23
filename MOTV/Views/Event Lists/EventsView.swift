@@ -71,7 +71,7 @@ struct EventsView: View {
         }
         .sheet(isPresented: $presentEventCreationForm, content: {
             EventCreationPrimaryDetailsFormView(presentEventCreationForm: $presentEventCreationForm)
-                .environmentObject(EventCreationPrimaryDetailsFormViewModel(eventCreationForm: EventCreationFormViewModel(eventRepository: EventRepository())))
+                .environmentObject(EventCreationPrimaryDetailsFormViewModel(eventCreationForm: EventCreationFormViewModel(eventRepository: EventRepository(), usersRepository: UsersRepository())))
                 
         })
 

@@ -26,6 +26,7 @@ class EventCreationPrimaryDetailsFormViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .assign(to: \.formIsValid, on: self)
             .store(in: &cancellables)
+        
     }
     
     private var eventNameIsValid: AnyPublisher<Bool, Never> {

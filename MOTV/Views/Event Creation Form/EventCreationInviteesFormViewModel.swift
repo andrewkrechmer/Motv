@@ -20,11 +20,17 @@ class EventCreationInviteesFormViewModel: ObservableObject {
     
     @Published var friendViewModels = [UserViewModel]()
     
-    var numFriendViewModelsDisplayed = 0 {
+    var loadedModelsStore: [String] = [] {
+        willSet {
+            self.loadedModels = newValue.uniqued()
+        }
+    }
+    
+    var loadedModels: [String] = [] {
         didSet {
             // If less than 10 friend view models left get more from repository
-            if friendViewModels.count - numFriendViewModelsDisplayed < 10 {
-                retreiveFriends()
+            if friendViewModels.count - loadedModels.count < 5 && loadedModels.count % 5 == 0 {
+                    self.retreiveFriends()
             }
         }
     }
@@ -36,18 +42,6 @@ class EventCreationInviteesFormViewModel: ObservableObject {
         self.eventCreationFormViewModel = eventCreationForm
         
         self.usersRepository = usersRepository
-        
-        // Subscribe to the repositories friends array
-        
-        usersRepository.$friends.map { friends in
-            
-            friends.map { friend in
-                UserViewModel(id: friend.id ?? "", firstName: friend.firstName, lastName: friend.lastName, profileImage: friend.profileImage)
-            }
-        }
-        .assign(to: \.friendViewModels, on: self)
-        .store(in: &cancellables)
-        
         
         // Retreive first batch of friends
         
@@ -64,7 +58,13 @@ class EventCreationInviteesFormViewModel: ObservableObject {
     
     func retreiveFriends() {
         
-        usersRepository.retreiveFriends(batchSize: 20)
+        usersRepository.retreiveFriends(batchSize: 20) { retreivedFriends in
+            
+            for friend in retreivedFriends {
+                    self.friendViewModels.append(UserViewModel(id: friend.id ?? "", firstName: friend.firstName, lastName: friend.lastName, profileImage: friend.profileImage))
+            }
+            
+        }
         
     }
     
@@ -104,27 +104,48 @@ class EventCreationInviteesFormViewModel: ObservableObject {
     
 }
 class UserViewModel: ObservableObject, Identifiable {
+    
     var id: String
     var firstName: String
     var lastName: String
-    var profileImage: UIImage
+    @Published var profileImage: UIImage
     
-    var highlight: Bool
+    @Published var highlight: Bool
     
-    init(id: String, firstName: String, lastName: String, profileImage: Data) {
+    var profileImageURL: String
+    
+    init(id: String, firstName: String, lastName: String, profileImage: String) {
         
         self.id = id
         
         self.firstName = firstName
         self.lastName = lastName
         
-        self.profileImage = UIImage(data: profileImage) ?? UIImage(systemName: "Person")!
+        self.profileImage = UIImage(systemName: "Person")?.withTintColor(.blue) ?? UIImage(ciImage: CIImage(color: CIColor.blue))
         
         self.highlight = false
         
+        self.profileImageURL = profileImage
+        
+        self.fetchImage()
+        
+    }
+    
+    func fetchImage() {
+        let imageFetcher = ImageFetcher()
+        imageFetcher.fetchImage(with: self.profileImageURL) { image in
+            self.profileImage = image
+            self.objectWillChange.send()
+        }
     }
     
 }
 
 
 
+extension Sequence where Element: Hashable {
+    func uniqued() -> [Element] {
+        var set = Set<Element>()
+        return filter { set.insert($0).inserted }
+    }
+}

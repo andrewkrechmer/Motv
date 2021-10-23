@@ -23,12 +23,14 @@ struct EventCell: View {
         ZStack(alignment: .leading) {
             
             VStack(alignment: .leading, spacing: 30.0) {
-                EventPrimaryInfoView() // Host image, event title and time
+                EventPrimaryInfoView()
                     .padding(.top, 20.0)
                     .layoutPriority(1)
-                EventAttendeesView() // 3 images and 49 letter text displaying the most relevant attendees
+                Divider()
+                
+                EventAttendeesView()
                     .layoutPriority(2)
-                EventSecondaryInfoView() // Secondary info (Location, activities, special policies, etc)
+                EventActionButtonsView()
                     .padding(.bottom, 20.0)
                     .layoutPriority(0)
                     
@@ -38,7 +40,15 @@ struct EventCell: View {
                 RoundedRectangle(cornerRadius: 15.0)
                     .scale(x: 0.95, y: 1.0, anchor: .center)
                     .foregroundColor(Color.foreGroundColor)
-                    .shadow(color: .shadowColor, radius: 4.0, x: 0.0, y: 5.0)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .scale(x: 0.95, y: 1.0, anchor: .center)
+                            .stroke(ThemeColors.gradient, style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                    )
+                
+                    
+                    
+                    //.shadow(color: .shadowColor, radius: 4.0, x: 0.0, y: 5.0)
             )
 
         }
@@ -56,23 +66,26 @@ struct EventPrimaryInfoView: View {
     
     var body: some View {
         
-        HStack {
+        HStack(alignment: .top) {
             Image(uiImage: eventViewModel.hostImage) // Event Host Image
                 .resizable()
                 .contentShape(Circle())
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: 100, height: 100, alignment: .center)
                 .clipped()
                 .padding(.trailing, 28.0)
 
-            VStack() {
+            VStack(alignment: .leading, spacing: 7) {
                 Text(self.eventViewModel.nameText) // Event Title
                     .font(.system(size: 27, weight: .bold, design: .default))
                     .multilineTextAlignment(.leading)
                     
                 Text(eventViewModel.timeText) // Event Time
-                    .font(.system(size: 22, weight: .medium, design: .default))
+                    .font(.system(size: 20, weight: .medium, design: .default))
                     .multilineTextAlignment(.leading)
+                
+                Text(eventViewModel.locationText)
+                    .font(.system(size: 18, weight: .regular, design: .default)).foregroundColor(.gray)
             }
         
         }
@@ -82,80 +95,81 @@ struct EventPrimaryInfoView: View {
 }
 
 
-// --- Attendees View
+// -- Attendees View
 
 struct EventAttendeesView: View {
     
     @EnvironmentObject var eventViewModel: EventViewModel
     
     var body: some View {
-        HStack {
-            ZStack { // Event Attendees/Invitees Image
-                
-                if eventViewModel.attendeesImages.count >= 1 {
-                    Image(uiImage: self.eventViewModel.attendeesImages[0])
+        
+        LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem()], spacing: 20) {
+            ForEach(eventViewModel.attendeesInfo) { user in
+                VStack {
+                    Image(uiImage: user.profileImage)
                         .attendeeImage()
-                        .zIndex(3.0)
-                        .offset(x: 0, y: -15)
+                    Text(user.name)
+                        .font(.system(size: 14, weight: .regular, design: .default))
                 }
-                
-                if eventViewModel.attendeesImages.count >= 2 {
-                    Image(uiImage: eventViewModel.attendeesImages[1])
-                        .attendeeImage()
-                        .zIndex(2.0)
-                        .offset(x: 24)
-                }
-                
-                if eventViewModel.attendeesImages.count >= 3 {
-                    Image(uiImage: eventViewModel.attendeesImages[2])
-                        .attendeeImage()
-                        .zIndex(1.0)
-                        .offset(x: 0, y: 15)
-                }
-   
             }
-            .padding(.trailing, 43.0)
-            
-            
-            Text(eventViewModel.attendeesText) // Event Attendees/Invitees
-                .font(.system(size: 18, weight: .medium, design: .default))
-                .multilineTextAlignment(.leading)
-                .allowsTightening(true)
-                .lineLimit(2)
-                .lineSpacing(5.0)
         }
+        
     }
+
+    
 }
 
 
-// --- Secondary Info View
+// -- Button View
 
-struct EventSecondaryInfoView: View {
-    
-    //    var eventViewModel: EventViewModel
-    
-    @State var topSecondaryInfo: [SecondaryInfo] = [SecondaryInfo(text: "📍 Joana's House | 22 mins away", type: .location), SecondaryInfo(text: "25 Peopl Max ", type: .attendeeLimit), SecondaryInfo(text: "🌊  Outdoor Pool!", type: .activity)]
-    @State var bottomSecondaryInfo: [SecondaryInfo] = [SecondaryInfo(text: "💉 Proof of Covid Vaccination Required", type: .activity), SecondaryInfo(text: "🎵 Music", type: .activity), SecondaryInfo(text: "🍾 BYOB", type: .activity)]
+struct EventActionButtonsView: View {
     
     var body: some View {
         
-        ScrollView(.horizontal, showsIndicators: false) {
-            
-            VStack(alignment: .leading, spacing: nil)
-            {
-                HStack(alignment: .center, spacing: nil)
-                {
-                    ForEach(topSecondaryInfo) { info in
-                        SecondaryInfoCell(info: info)
-                    }
-                }
-                HStack(alignment: .center, spacing: nil) {
-                    ForEach(bottomSecondaryInfo) { info in
-                        SecondaryInfoCell(info: info)
-                    }
-                }
-            }
+        HStack(alignment: .center, spacing: 20) {
+            EventActionButtonView(buttonType: .moreInfo)
+            EventActionButtonView(buttonType: .moreInfo)
+            EventActionButtonView(buttonType: .moreInfo)
+            EventActionButtonView(buttonType: .moreInfo)
         }
+        
+    }
+    
+}
+
+struct EventActionButtonView: View {
+    
+    enum ButtonType {
+        case moreInfo
+        case accept
+        case unsure
+        case decline
+        case groupChat
+        case invitePlusOne
+    }
+    
+    var buttonType: ButtonType
+    
+    var body: some View {
+        ZStack {
+            
+            switch buttonType {
+                case .moreInfo:
+                    Text("+")
+                    
+                default:
+                    Text("")
+            }
+            
+            Circle()
+                .foregroundColor(.clear)
+                .background(ThemeColors.gradient).opacity(0.3)
+                .background(Circle().stroke(ThemeColors.gradient, style: StrokeStyle(lineWidth: 2, lineCap: .round)))
+                .clipShape(Circle())
+            .frame(width: 55, height: 55, alignment: .center)
+        }
+            
+        
     }
 }
 
@@ -193,7 +207,7 @@ extension Image {
             .resizable()
             .contentShape(Circle())
             .aspectRatio(contentMode: .fill)
-            .frame(width: 34, height: 34, alignment: .center)
+            .frame(width: 70, height: 70, alignment: .center)
             .clipped()
     }
 }

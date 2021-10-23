@@ -8,6 +8,8 @@
 import SwiftUI
 import MapKit
 
+
+
 class EventViewModel: ObservableObject, Identifiable {
     
     var specialColour = Color("Red") // Should be universal
@@ -16,12 +18,15 @@ class EventViewModel: ObservableObject, Identifiable {
     @Published var userRepository: UsersRepository
     //    private var cancellables = Set<AnyCancellable>()
     
+    @Published var invitationBadge: (UsersRelationToEvent, String) = (.invited, "You're Invited")
+    @Published var attendeeNumbersText: String = ""
+    @Published var plusOnesAllowed: Bool = false
     @Published var hostImage: UIImage = UIImage(systemName: "person")!
-    @Published var nameText: String
-    @Published var timeText: String = "Placeholder time"
-    @Published var attendeesImages: [UIImage] = [UIImage(systemName: "person")!, UIImage(systemName: "person")!, UIImage(systemName: "person")!]
-    @Published var attendeesText: String
-    @Published var secondaryInfo: [(text: String, type: SecondaryInfo)]
+    @Published var nameText: String = ""
+    @Published var timeText: String = ""
+    @Published var locationText: String = ""
+    @Published var attendeesInfo: [Invitee] = []
+
     
     
     init(usersRepository: UsersRepository, event: Event) {
@@ -29,51 +34,53 @@ class EventViewModel: ObservableObject, Identifiable {
         self.userRepository = usersRepository
         
         self.nameText = event.eventName
-        
-        self.attendeesText = "Joanna, Chad, Michael, Kylie, Thor, Guy, Borson, Dorra + 12 more"
-        
-        self.secondaryInfo = [(text: "", type: .location)]
-        
         self.timeText = timeText(for: event.start, to: event.end)
+        self.locationText = locationText(for: event.location)
+        fetchHostImage(with: event.hostProfileImage)
         
-      //  self.hostImage = UIImage(data: event.hostProfileImage) ?? UIImage(systemName: "person")
+        for i in 0..<8 {
+            
+            guard event.invitees.indices.contains(i) else { break }
+            
+            attendeesInfo.append(Invitee(name: event.invitees[i].firstName, profileImage: UIImage(systemName: "person") ?? UIImage(ciImage: CIImage(color: CIColor.white)), id: event.invitees[i].id))
+            
+            fetchAttendeesImages(for: event.invitees, count: attendeesInfo.count)
+            
+        }
         
-        self.determineAttendeeImages(for: event)
+        self.plusOnesAllowed = event.plusOnesAllowed
         
+    }
+    
+    struct Invitee: Hashable, Identifiable {
+        var name: String
+        var profileImage: UIImage
+        var id: String
     }
     
     
     // MARK: - View Element Creating Functions
     
-    // -- Fetch Image with URL
-    private func fetchImage(with url: String, completion: @escaping (UIImage) -> Void) {
-        
-        //        if let image = CacheManager.shared.getFromCache(key: url) as? UIImage {
-        //            completion(image)
-        //        } else {
-        
-        if let url = URL(string: url) {
-            
-            let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                
-                guard let imageData = data else { return }
-                
-                OperationQueue.main.addOperation {
-                    guard let image = UIImage(data: imageData) else { return }
-                    
-                    completion(image)
-                    
-                    // Add the downloaded image to cache
-                    // CacheManager.shared.cache(object: image, key: post.imageFileURL)
-                    
-                }
-                
-            })
-            
-            downloadTask.resume()
+    private func locationText(for location: SavedLocation) -> String {
+        if location.commonName == "" { return location.addressString } else { return location.commonName }
+    }
+    
+    // Fetch Images
+    
+    private func fetchHostImage(with url: String) {
+        let imageFetcher = ImageFetcher()
+        imageFetcher.fetchImage(with: url) { image in
+            self.hostImage = image
         }
-        //        }
-        
+    }
+    
+    private func fetchAttendeesImages(for invitees: [EventInvitee], count: Int) {
+        for i in 0..<count {
+            let imageFetcher = ImageFetcher()
+            imageFetcher.fetchImage(with: invitees[i].profileImage) { image in
+                self.attendeesInfo[i].profileImage = image
+            }
+        }
     }
     
     // -- Determine Time Text
@@ -151,51 +158,6 @@ class EventViewModel: ObservableObject, Identifiable {
         
     }
     
-    // -- Determin attendeesText
-    private func attendeesText(for event: Event) {
-        
-        
-        
-    }
-    
-    // -- Determine Attendees Images
-    private func determineAttendeeImages(for event: Event) {
-        
-        //var count = 0
-        
-//        switch event.inviteesProfileImages.count {
-//            
-//        case 0:
-//            break
-//            
-//        case 1:
-//            let image = UIImage(data: event.inviteesProfileImages[0])
-//            if let image = image {
-//                self.attendeesImages[0] = image
-//            }
-//            count += 1
-//            
-//        case 2:
-//            for i in 0...1 {
-//                let image = UIImage(data: event.inviteesProfileImages[i])
-//                if let image = image {
-//                    self.attendeesImages[i] = image
-//                }
-//            }
-//            count += 2
-//            
-//        default:
-//            for i in 0...2 {
-//                let image = UIImage(data: event.inviteesProfileImages[i])
-//                if let image = image {
-//                    self.attendeesImages[i] = image
-//                }
-//            }
-//            count += 3
-//            
-//        }
-        
-    }
     
     // -- Determine Secondary Info
 //    private func secondaryInfo(for event: Event) -> [(text: String, type: SecondaryInfo)] {
@@ -233,3 +195,4 @@ class EventViewModel: ObservableObject, Identifiable {
     }
     
 }
+

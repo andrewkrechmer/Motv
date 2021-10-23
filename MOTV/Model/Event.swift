@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 
 struct Event: Codable, Identifiable {
     
-    @DocumentID var id: String? /*= UUID().uuidString*/
+    @DocumentID var id: String?
     
     var host: String
     
@@ -38,12 +38,16 @@ struct Event: Codable, Identifiable {
     var maxAttendees: Int
     
     var plusOnesAllowed: Bool
+    
+    var textDetails: String
         
 }
 
-struct EventInvitee: Codable, Identifiable {
+struct EventInvitee: Codable, Identifiable, Equatable {
     var id: String
     var profileImage: String
+    var firstName: String
+    var lastName: String
     var invitedBy: String
     var status: UsersRelationToEvent
 }

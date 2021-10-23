@@ -62,10 +62,6 @@ class EventRepository: ObservableObject {
         
         event.host = currentUserId
         
-        event.invitees = event.invitees.map { invitee in
-            return EventInvitee(id: invitee.id, profileImage: "", invitedBy: currentUserId, status: .invited)
-        }
-        
         do {
             let _ = try db.collection("users").document(currentUserId).collection("events").addDocument(from: event)
         }

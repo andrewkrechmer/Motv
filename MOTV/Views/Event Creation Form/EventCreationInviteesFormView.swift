@@ -165,42 +165,62 @@ private struct FriendsView: View {
             
             List() {
 
-                ForEach(viewModel.friendViewModels, id: \.id) { friend in
+                ForEach(viewModel.friendViewModels) { friend in
 
-                    HStack {
-
-                        Image(uiImage: friend.profileImage)
-                            .resizable()
-                            .contentShape(Circle())
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 50, height: 50, alignment: .center)
-                            .clipped()
-                            .padding(.trailing, 28.0)
-
-                        Text("\(friend.firstName) \(friend.lastName)")
-                            .font(.system(size: 20, weight: .medium, design: .default))
-                            .foregroundColor(friend.highlight ? .green : .primary)
-
-                        Spacer()
-
-                        Image(systemName: friend.highlight ? "checkmark.circle.fill" : "circlebadge")
-                            .font(.title)
-                            .foregroundColor(friend.highlight ? .green : .gray)
-
-                    }
+                    FriendSnapShot(friend: friend)
                     .onAppear {
-                        viewModel.numFriendViewModelsDisplayed += 1
+                        viewModel.loadedModelsStore.append(friend.id)
                     }
-                    .onTapGesture(perform: {
-                        friend.highlight.toggle()
-                        self.viewModel.objectWillChange.send()
-                        viewModel.eventCreationFormViewModel.invitees.append(friend.id)
+                    .onTapGesture(perform: { // Friend Tapped On
+                        
+                        friend.highlight.toggle() // Highlight view
+                        
+                        let invitee = EventInvitee(id: friend.id, profileImage: friend.profileImageURL, firstName: friend.firstName, lastName: friend.lastName, invitedBy: viewModel.eventCreationFormViewModel.host, status: .invited) // Declare new EventInvitee
+                        
+                        if viewModel.eventCreationFormViewModel.invitees.contains(invitee) {
+                            viewModel.eventCreationFormViewModel.invitees.removeAll(where: { $0.id == friend.id } )
+                        } else {
+                            viewModel.eventCreationFormViewModel.invitees.append(invitee) // Add new EventInvitee to list of Invitees
+                        }
+                        
                     })
 
                 }
 
             }
             .listStyle(InsetGroupedListStyle())
+        }
+        
+    }
+    
+}
+
+struct FriendSnapShot: View {
+    
+    @ObservedObject var friend: UserViewModel
+    
+    var body: some View {
+        
+        HStack {
+
+            Image(uiImage: friend.profileImage)
+                .resizable()
+                .contentShape(Circle())
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 50, height: 50, alignment: .center)
+                .clipped()
+                .padding(.trailing, 28.0)
+
+            Text("\(friend.firstName) \(friend.lastName)")
+                .font(.system(size: 20, weight: .medium, design: .default))
+                .foregroundColor(friend.highlight ? .green : .primary)
+
+            Spacer()
+
+            Image(systemName: friend.highlight ? "checkmark.circle.fill" : "circlebadge")
+                .font(.title)
+                .foregroundColor(friend.highlight ? .green : .gray)
+
         }
         
     }

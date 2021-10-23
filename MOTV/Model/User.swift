@@ -37,7 +37,7 @@ struct UserSnapShot: Codable {
     var firstName: String
     var lastName: String
     
-    var profileImage: Data
+    var profileImage: String
     
 }
 
@@ -50,6 +50,6 @@ struct UserSecondModel: Codable {
     var firstName: String
     var lastName: String
     
-    var profileImage: Data
+    var profileImage: String
     
 }

@@ -39,8 +39,12 @@ class PersonalProfileViewModel: ObservableObject {
             
             self.lastName = user.lastName
             
-            self.profileImage = UIImage(data: user.profileImage) ?? UIImage(systemName: "person")!
+            self.profileImage = UIImage(systemName: "person")!
             
+            let imageFetcher = ImageFetcher()
+            imageFetcher.fetchImage(with: user.profileImage) { image in
+                self.profileImage = image
+            }
         }
         
     }

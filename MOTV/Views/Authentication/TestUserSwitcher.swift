@@ -43,11 +43,12 @@ struct TestUserSwitcher: View {
         
         ForEach(users, id: \.id) { user in
 
-            UserButton(name: "\(user.firstName) \(user.lastName)", profileImageData: user.profileImage) {
+            UserButton(name: "\(user.firstName) \(user.lastName)", profileImageURL: user.profileImage) {
                 
                 //authServices.signOut()
                 
                 authServices.signIn(email: user.email, password: "havXef-tebbi7-tubguq")
+                print("Signed in user \(user.id)")
                 
             }
 
@@ -60,15 +61,22 @@ struct TestUserSwitcher: View {
 struct UserButton: View {
     
     var name: String
-    var profileImageData: Data
+    @State var profileImage: UIImage = UIImage(systemName: "person") ?? UIImage(ciImage: CIImage(color: CIColor.white))
+    var profileImageURL: String
     let action: () -> Void
     
     var body: some View {
         Button {
             action()
         } label: {
-            Image(uiImage: UIImage(data: profileImageData)!)
+            Image(uiImage: profileImage)
             Text(name)
+        }
+        .onAppear {
+            let imageFetcher = ImageFetcher()
+            imageFetcher.fetchImage(with: profileImageURL) { image in
+                self.profileImage = image
+            }
         }
     }
 }

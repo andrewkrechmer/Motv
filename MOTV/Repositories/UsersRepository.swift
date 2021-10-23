@@ -16,46 +16,93 @@ class UsersRepository: ObservableObject {
     
     @Published var users = [User]()
     
-    @Published var friends = [UserSnapShot]()
-    
-   private var lastRetreivedDocument: DocumentSnapshot?
+    private var lastRetreivedDocument: DocumentSnapshot?
     
     // -- Retreive Friends
     
-    func retreiveFriends(batchSize: Int) {
+    func retreiveFriends(batchSize: Int, completion: @escaping ([UserSnapShot])->Void) {
         
         //let currentUserId: String = Auth.auth().currentUser?.uid ?? ""
         
         let friendsQuery = db.collection("users")/*.document(currentUserId).collection("friends")*/
-            .limit(to: batchSize)
+      //      .order(by: "firstName")
         
         if let lastRetreivedDocument = lastRetreivedDocument {
+            
+            // Second query and on
+            
             friendsQuery
                 .start(afterDocument: lastRetreivedDocument)
-        }
-        
-        friendsQuery
-            .getDocuments { querysnapshot, error in
-                
-                if let snapshot = querysnapshot {
+                .limit(to: 5)
+                .getDocuments { querysnapshot, error in
                     
-                    self.lastRetreivedDocument = snapshot.documents.last
-                    
-                    self.friends = snapshot.documents.compactMap { document in
+                    if let snapshot = querysnapshot {
                         
-                        do {
-                            let friend = try document.data(as: UserSnapShot.self)
-                            return friend
+                        guard let _ = snapshot.documents.last else {
+                            // The collection is empty.
+                            return
                         }
-                        catch {
-                            print("error retreving friends: \(error)")
-                            return nil
+                        
+                        self.lastRetreivedDocument = snapshot.documents.last
+                        
+                        let friends: [UserSnapShot] = snapshot.documents.compactMap { document in
+                            
+                            do {
+                                let friend = try document.data(as: UserSnapShot.self)
+                                return friend
+                            }
+                            catch {
+                                print("error retreving friends: \(error)")
+                                return nil
+                            }
+                            
                         }
+                        
+                        completion(friends)
                         
                     }
-                    
                 }
-            }
+        }
+        else { // First query
+            
+            friendsQuery
+                .limit(to: 5)
+                .getDocuments { querysnapshot, error in
+                    
+                    if let snapshot = querysnapshot {
+                        
+                        guard let _ = snapshot.documents.last else {
+                            // The collection is empty.
+                            return
+                        }
+                        
+                        self.lastRetreivedDocument = snapshot.documents.last
+                        
+                        let friends: [UserSnapShot] = snapshot.documents.compactMap { document in
+                            
+                            do {
+                                let friend = try document.data(as: UserSnapShot.self)
+                                return friend
+                            }
+                            catch {
+                                print("error retreving friends: \(error)")
+                                return nil
+                            }
+                            
+                        }
+                        
+                        completion(friends)
+                        
+                    }
+                }
+            
+        }
+
+
+    }
+    
+    func d(_ arr: [UserSnapShot]) {
+        for user in arr { print(user.firstName + user.lastName) }
     }
     
     // -- Retreive User
@@ -83,22 +130,6 @@ class UsersRepository: ObservableObject {
             }
         
     }
-    
-    func retreiveUser(with reference: DocumentReference, completion: @escaping (User) -> Void) {
-//            reference.getDocument { document, error in
-//                if let document = document {
-//                    do {
-//                        let newUser = try document.data(as: User.self)! // Forced unwrapped because option was check for with "if let document = document"
-//                        completion(newUser)
-//                    }
-//                    catch {
-//                        print(error)
-//                    }
-//                } else {
-//                    print("Error: Document doesn't exist")
-//                }
-//            }
-        }
     
     
     // -- Create User

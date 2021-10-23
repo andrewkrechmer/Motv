@@ -38,9 +38,6 @@
 		7F3E6CFE2709252E009EB80A /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E6CFD2709252E009EB80A /* AuthenticationView.swift */; };
 		7F4B9764270153C50072C52F /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B9763270153C50072C52F /* FontManager.swift */; };
 		7F4B9766270153EB0072C52F /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B9765270153EB0072C52F /* ColorManager.swift */; };
-		7F4B9769270155030072C52F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B9768270155030072C52F /* Colors.xcassets */; };
-		7F4B976A270155030072C52F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B9768270155030072C52F /* Colors.xcassets */; };
-		7F4B976B270155030072C52F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B9768270155030072C52F /* Colors.xcassets */; };
 		7F4B976E270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */; };
 		7F4B976F270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */; };
 		7F4B9770270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */; };
@@ -49,6 +46,10 @@
 		7F8DC5E4270E9A9A0025E02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */; };
 		7F8DC5E5270E9A9A0025E02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */; };
 		7F8DC5E6270E9AF60025E02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */; };
+		7FB247ED2721E08800C3F4C9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB247EC2721E08800C3F4C9 /* Colors.xcassets */; };
+		7FB247EE2721E08800C3F4C9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB247EC2721E08800C3F4C9 /* Colors.xcassets */; };
+		7FB247EF2721E08800C3F4C9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB247EC2721E08800C3F4C9 /* Colors.xcassets */; };
+		7FB7144C2721FF9900A4C69B /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7144B2721FF9900A4C69B /* ImageFetcher.swift */; };
 		7FBF26DE26D0050A003E2E99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF26DD26D00509003E2E99 /* Constants.swift */; };
 		7FCA797426D563D3008C673A /* MapServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA797326D563D3008C673A /* MapServices.swift */; };
 		7FE433772710C65C00B40692 /* TestUserSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE433762710C65C00B40692 /* TestUserSwitcher.swift */; };
@@ -119,10 +120,11 @@
 		7F3E6CFD2709252E009EB80A /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		7F4B9763270153C50072C52F /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		7F4B9765270153EB0072C52F /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
-		7F4B9768270155030072C52F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		7F4B976D270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Extended-Bold-Italic-Trial copy.otf"; sourceTree = "<group>"; };
 		7F8DC5E0270E65770025E02B /* PersonalProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalProfileView.swift; sourceTree = "<group>"; };
 		7F8DC5E2270E65850025E02B /* PersonalProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonalProfileViewModel.swift; path = MOTV/Views/Profiles/PersonalProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
+		7FB247EC2721E08800C3F4C9 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		7FB7144B2721FF9900A4C69B /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		7FBF26DD26D00509003E2E99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7FCA797326D563D3008C673A /* MapServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapServices.swift; sourceTree = "<group>"; };
 		7FE433762710C65C00B40692 /* TestUserSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserSwitcher.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				7FBF26DD26D00509003E2E99 /* Constants.swift */,
 				7F4B9763270153C50072C52F /* FontManager.swift */,
 				7F4B9765270153EB0072C52F /* ColorManager.swift */,
+				7FB7144B2721FF9900A4C69B /* ImageFetcher.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -347,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				7F2C4A5C26CD5A66002187A1 /* Assets.xcassets */,
-				7F4B9768270155030072C52F /* Colors.xcassets */,
+				7FB247EC2721E08800C3F4C9 /* Colors.xcassets */,
 				7F4B976C270155110072C52F /* Fonts */,
 			);
 			path = Assets;
@@ -520,8 +523,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB247ED2721E08800C3F4C9 /* Colors.xcassets in Resources */,
 				7F2C4A6026CD5A66002187A1 /* Preview Assets.xcassets in Resources */,
-				7F4B9769270155030072C52F /* Colors.xcassets in Resources */,
 				7F4B976E270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
 				7F18D66F26CE92C8003B8EBF /* GoogleService-Info.plist in Resources */,
 				7F8DC5E6270E9AF60025E02B /* Assets.xcassets in Resources */,
@@ -532,9 +535,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB247EE2721E08800C3F4C9 /* Colors.xcassets in Resources */,
 				7F4B976F270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
 				7F8DC5E4270E9A9A0025E02B /* Assets.xcassets in Resources */,
-				7F4B976A270155030072C52F /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,9 +545,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB247EF2721E08800C3F4C9 /* Colors.xcassets in Resources */,
 				7F4B9770270155110072C52F /* GT-America-Extended-Bold-Italic-Trial copy.otf in Resources */,
 				7F8DC5E5270E9A9A0025E02B /* Assets.xcassets in Resources */,
-				7F4B976B270155030072C52F /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +687,7 @@
 				7F3334FD2701161D007CB93B /* EventCreationInviteesFormViewModel.swift in Sources */,
 				7F18D66D26CDECF9003B8EBF /* EventsViewModel.swift in Sources */,
 				7F02118E270BA59F004D7589 /* SignInViewModel.swift in Sources */,
+				7FB7144C2721FF9900A4C69B /* ImageFetcher.swift in Sources */,
 				7F3334FB27011611007CB93B /* EventCreationInviteesFormView.swift in Sources */,
 				7F3334F7270115B3007CB93B /* EventCreationPrimaryDetailsFormView.swift in Sources */,
 				7F3335012701164D007CB93B /* EventCreationSecondaryDetailsFormViewModel.swift in Sources */,

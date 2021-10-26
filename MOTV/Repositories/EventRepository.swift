@@ -21,9 +21,22 @@ class EventRepository: ObservableObject {
     // -- Initializer
     
     init() {
+        
+        runFirebaseTests()
+        
         retreiveEvents()
     }
     
+    
+    // -- Firebase Emulator Settings
+    
+    func runFirebaseTests() {
+        let settings = Firestore.firestore().settings
+        settings.host = "localhost:8080"
+        settings.isPersistenceEnabled = false
+        settings.isSSLEnabled = false
+        Firestore.firestore().settings = settings
+    }
     
     // -- Retreive Data
     
@@ -68,6 +81,15 @@ class EventRepository: ObservableObject {
         catch {
             fatalError("Unable to encode event: \(error.localizedDescription)")
         }
+        
+        print("---- Added Event")
+        print("-- Host: \(event.host)")
+        for invitee in event.invitees {
+            print("- \(invitee.id) (\(invitee.firstName) \(invitee.lastName) )")
+        }
+
+        
+        return;
         
     }
 

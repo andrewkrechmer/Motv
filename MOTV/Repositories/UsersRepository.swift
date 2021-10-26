@@ -98,7 +98,6 @@ class UsersRepository: ObservableObject {
             
         }
 
-
     }
     
     func d(_ arr: [UserSnapShot]) {

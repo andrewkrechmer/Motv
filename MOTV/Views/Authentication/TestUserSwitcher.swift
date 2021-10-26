@@ -43,14 +43,7 @@ struct TestUserSwitcher: View {
         
         ForEach(users, id: \.id) { user in
 
-            UserButton(name: "\(user.firstName) \(user.lastName)", profileImageURL: user.profileImage) {
-                
-                //authServices.signOut()
-                
-                authServices.signIn(email: user.email, password: "havXef-tebbi7-tubguq")
-                print("Signed in user \(user.id)")
-                
-            }
+            UserButton(name: "\(user.firstName) \(user.lastName)", profileImageURL: user.profileImage, action: { authServices.signIn(email: user.email, password: "havXef-tebbi7-tubguq") } )
 
         }
         
